@@ -1,0 +1,25 @@
+{
+  "name": "joga_mysql_oop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mysql2": "^3.16.3",
+    "route": "^0.2.5",
+    "router": "^2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HenrikSaega/joga_mysql.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HenrikSaega/joga_mysql/issues"
+  },
+  "homepage": "https://github.com/HenrikSaega/joga_mysql#readme"
+}
