@@ -1,7 +1,7 @@
 const ArticleModel = require("../models/article");
 const articleModel = new ArticleModel();
 
-module.exports = class rticleController {
+module.exports = class ArticleController {
     constructor(){
         const articles = [];
     }
