@@ -6,7 +6,7 @@ module.exports = class ArticleModel extends BaseSQLModel {
     }
 
     async findAll(){
-        const article = await super.findAll()
-        return article
+        const articles = await super.findAll()
+        return articles
     }
 }

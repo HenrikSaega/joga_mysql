@@ -9,8 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.4.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.4",
     "express": "^5.2.1",
+    "morgan": "^1.10.1",
     "mysql2": "^3.16.3",
+    "node": "^25.6.0",
     "route": "^0.2.5",
     "router": "^2.2.0"
   },

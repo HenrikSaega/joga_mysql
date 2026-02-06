@@ -4,4 +4,6 @@ const articleControllerClass = require("../controllers/article");
 
 const articleController = new articleControllerClass();
 
-module.export = router.get("/", (req, res) => articleController.getAllArticles(req, res));
+router.get("/", (req, res) => articleController.getAllArticles(req, res));
+
+module.exports = router;

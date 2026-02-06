@@ -1,20 +1,19 @@
-/* const conn = require("../utils/db"); */
+const connection = require("../utils/db");
 
 class BaseSQLModel {
   constructor(tableName) {
     this.tableName = tableName;
   }
 
-  executeQuery(query, params) {
-    return new Promise((resolve, reject) => {
-      conn.query(query, params, (error, results) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(results);
-        }
-      });
-    });
+  async executeQuery(query, params) {
+    const conn = await connection();
+    try{
+      const [results] = await conn.execute(query, params);
+      return results;
+    } catch (error){
+      console.log(error);
+      throw error;
+    }
   }
 
   async findAll() {

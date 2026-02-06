@@ -3,11 +3,12 @@ const articleModel = new ArticleModel();
 
 module.exports = class rticleController {
     constructor(){
-        const article = [];
+        const articles = [];
     }
 
     async getAllArticles(req, res){
-        const article = await articleModel.findAll();
-        res.status(201).json({article: article});
+        const articles = await articleModel.findAll();
+        res.status(201).json({article: articles});
+        console.log({article: articles});
     }
 }
