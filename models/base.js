@@ -43,10 +43,8 @@ class BaseSQLModel {
   }
 
   async create(data) {
-    const columns = Object.keys(data) // AI poolt antud lahendus placeholderite veale!
-      .map(key => `\`${key}\` = :${key}`)
-      .join(', ');
-
+    const columns = Object.keys(data).map(key => `\`${key}\` = :${key}`).join(', '); // AI poolt antud lahendus placeholderite veale!
+    
     const query = `INSERT INTO ${this.tableName} SET ${columns}`;
     const result = await this.executeQuery(query, data);
     return result.insertId;
@@ -65,6 +63,15 @@ class BaseSQLModel {
     const query = `DELETE FROM ${this.tableName} WHERE id = ?`;
     const result = await this.executeQuery(query, [id]);
     return result.affectedRows;
+  }
+
+  async registerUser(data) {
+    const setUserTable = 'users';
+    const columns = Object.keys(data).map(key => `\`${key}\` = :${key}`).join(', '); // AI poolt antud lahendus placeholderite veale!
+
+    const query = `INSERT INTO ${setUserTable} SET ${columns}`;
+    const result = await this.executeQuery(query, data);
+    return result.insertId;
   }
 }
 
