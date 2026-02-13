@@ -67,8 +67,7 @@ class BaseSQLModel {
 
   async registerUser(data) {
     const setUserTable = 'users';
-    const columns = Object.keys(data).map(key => `\`${key}\` = :${key}`).join(', '); // AI poolt antud lahendus placeholderite veale!
-
+    const columns = Object.keys(data).map(key => `\`${key}\` = :${key}`).join(', ');
     const query = `INSERT INTO ${setUserTable} SET ${columns}`;
     const result = await this.executeQuery(query, data);
     return result.insertId;

@@ -7,31 +7,36 @@ module.exports = class UserController {
         const users = []
     }
 
-    async register(req, res) {
+    async registerUser(req, res) {
+
+        if (!req.body.password || req.body.password.length < 8) {
+            return res.status(400).json({ message: "Password must be at least 8 characters long." });
+        }
+            
+        if (!req.body.username || req.body.username.length < 6) {
+            return res.status(400).json({ message: "Username must be at least 6 characters long." });
+        }
+
         const cryptPassword = await bcrypt.hash(req.body.password, 10);
 
-            const registeredId = await userModel.create({
+        try{
+            const registeredId = await userModel.registerUser({
                 username: req.body.username,
                 email: req.body.email,
                 password: cryptPassword
             })
-            try{
-                if(registeredId) {
-                    const userData = await userModel.findById(registeredId);
-                    req.session.user = {
-                        username: userData.username,
-                        user_id: userData.id
-                    }
-                    res.json({
-                        message: "New user registered successfully",
-                        user_session: req.session.user
-                    })
-                } else {
-                    res.status(500).json({message: "USer registration failed"});
-                }
-            } catch (error) {
-                console.log(error);
-                res.status(500).json({ message: "Server error", error });
+            const userData = await userModel.findById(registeredId);
+
+            req.session.user = {
+                username: userData.username,
+                user_id: userData.id
             }
+            res.json({
+                message: "New user registered successfully",
+                user_session: req.session.user
+            })
+        } catch (error) {
+            return res.status(400).json({ message: "Error registering user: " + error.message });
+        }
     }
 }
