@@ -24,4 +24,9 @@ module.exports = class ArticleModel extends BaseSQLModel {
         const updateArticleId = await super.update(id, article);
         return updateArticleId;
     }
+
+    async delete(id){
+        const deleteArticleId = await super.delete(id);
+        return deleteArticleId;
+    }
 }
