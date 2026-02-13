@@ -22,6 +22,7 @@ class BaseSQLModel {
     return results;
   }
 
+  // Kasutame ID-d
   async findById(id) {
     const query = `SELECT * FROM ${this.tableName} WHERE id = ?`;
     const results = await this.executeQuery(query, [id]);
@@ -42,7 +43,11 @@ class BaseSQLModel {
   }
 
   async create(data) {
-    const query = `INSERT INTO ${this.tableName} SET ?`;
+    const columns = Object.keys(data) // AI poolt antud lahendus placeholderite veale!
+      .map(key => `\`${key}\` = :${key}`)
+      .join(', ');
+
+    const query = `INSERT INTO ${this.tableName} SET ${columns}`;
     const result = await this.executeQuery(query, data);
     return result.insertId;
   }

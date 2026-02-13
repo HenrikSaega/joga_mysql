@@ -9,4 +9,4 @@ module.exports = class AuthorModel extends BaseSQLModel {
         const author = await super.getAuthor("id", id);
         return author; 
     }
-}
+}   

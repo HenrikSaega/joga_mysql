@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/HenrikSaega/joga_mysql/issues"
   },
-  "homepage": "https://github.com/HenrikSaega/joga_mysql#readme"
+  "homepage": "https://github.com/HenrikSaega/joga_mysql#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
 }
