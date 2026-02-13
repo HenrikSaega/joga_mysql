@@ -10,7 +10,7 @@ const connection = async () => {
             user: process.env.MYSQL_USER,
             password: process.env.MYSQL_PASSWORD,
             database: process.env.MYSQL_DATABASE,
-            namedPlaceholders: true
+            namedPlaceholders: true,
         });
         console.log("Database connected successfully!");
         return db;

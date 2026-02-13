@@ -33,4 +33,24 @@ module.exports = class ArticleController {
             res.status(500).json({message: "Error creating article:", error});
         }
     }
+
+    async updateArticle(req, res) {
+        const id = req.params.id;
+        const findArticle = await articleModel.findById(id);
+        if (!findArticle) {
+            return res.status(404).json({ message: "Article not found" });
+        }
+        
+        const article = await articleModel.update(findArticle.id, req.body);
+        console.log(article);
+
+        try {
+            res.status(200).json({
+                message: `Updated article: ${req.params.slug}`,
+                article: {id: findArticle.id, ...req.body}
+            })
+        } catch (error) {
+            res.status(500).json({message: "Error updating article:", error});
+        }
+    }
 }

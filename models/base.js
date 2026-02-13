@@ -53,8 +53,11 @@ class BaseSQLModel {
   }
 
   async update(id, data) {
-    const query = `UPDATE ${this.tableName} SET ? WHERE id = ?`;
-    const result = await this.executeQuery(query, [data, id]);
+    const columns = Object.keys(data).map(key => `\`${key}\` = ?`).join(', '); // AI poolt antud lahendus placeholderite veale!
+    const values = Object.values(data);
+
+    const query = `UPDATE ${this.tableName} SET ${columns} WHERE id = ?`;
+    const result = await this.executeQuery(query, [...values, id]);
     return result.affectedRows;
   }
 
