@@ -1,0 +1,21 @@
+<div class="card">
+  <h1>Add Article</h1>
+  <form action="/admin/article/create" method="POST">
+    <label>Article Name</label>
+    <input type="text" name="name" placeholder="Enter article name" required>
+
+    <label>Slug</label>
+    <input type="text" name="slug" placeholder="Enter article slug" required>
+
+    <label>Image URL</label>
+    <input type="text" name="image" placeholder="Enter image URL">
+
+    <label>Body</label>
+    <textarea name="body" rows="5" placeholder="Write your article..." required></textarea>
+
+    <label>Author ID</label>
+    <input type="number" name="author_id" placeholder="Author ID" required>
+
+    <button type="submit">Create Article</button>
+  </form>
+</div>
