@@ -19,4 +19,14 @@ module.exports = class UserModel extends BaseSQLModel {
         const registeredUser = await this.create(data);
         return registeredUser; 
     }
+
+    async loginUser(data){
+        const user = await this.findOne("email", data.email);
+        const passwordMatch = user && await bcrypt.compare(data.password, user.password);
+
+        if(passwordMatch){
+            return user;
+        }
+        throw new Error("Incorrect email and password combination!");
+    }
 }   

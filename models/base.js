@@ -72,6 +72,13 @@ class BaseSQLModel {
     const result = await this.executeQuery(query, data);
     return result.insertId;
   }
+
+  async loginUser(data) {
+    const setUserTable = 'users';
+    const query = `SELECT * FROM ${setUserTable} WHERE email = ? AND password = ?`;
+    const result = await this.executeQuery(query, [data.email, data.password]);
+    return result[0];
+  }
 }
 
 module.exports = BaseSQLModel;

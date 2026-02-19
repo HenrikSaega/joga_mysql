@@ -39,4 +39,30 @@ module.exports = class UserController {
             return res.status(400).json({ message: "Error registering user: " + error.message });
         }
     }
+
+    async loginUser(req, res){
+        try {
+            const user = await userModel.findOne("email", req.body.email);
+            if (!user) {
+                return res.status(400).json({ message: "There are no users with this email!" });
+            }
+            console.log("User found:", user);
+            if(user){
+
+                const match = await bcrypt.compare(req.body.password, user.password);
+                if(match){
+                    req.session.user = {
+                        username: user.username,
+                        user_id: user.id
+                    }
+                        res.json({ message: "Login successful!", user_session: req.session.user});
+                } else {
+                    res.json({ message: "Incorrect password!"});
+                }
+            }
+        }
+        catch (error) {
+            return res.status(400).json({ message: "Error logging in user: " + error.message });
+        }
+    }
 }
